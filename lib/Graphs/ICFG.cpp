@@ -320,7 +320,7 @@ ICFGEdge* ICFG::getICFGEdge(const ICFGNode* src, const ICFGNode* dst, ICFGEdge::
 }
 
 /*!
- * Add intraprocedural edges between two nodes
+ * Add intraprocedural edges between two nodes //在两个进程内的结点中增加边
  */
 ICFGEdge* ICFG::addIntraEdge(ICFGNode* srcNode, ICFGNode* dstNode)
 {
@@ -358,7 +358,7 @@ ICFGEdge* ICFG::addConditionalIntraEdge(ICFGNode* srcNode, ICFGNode* dstNode, co
 
 
 /*!
- * Add interprocedural call edges between two nodes
+ * Add interprocedural call edges between two nodes //在两个结点之间增加进程间调用边
  */
 ICFGEdge* ICFG::addCallEdge(ICFGNode* srcNode, ICFGNode* dstNode, const Instruction*  cs)
 {
@@ -553,11 +553,11 @@ struct DOTGraphTraits<ICFG*> : public DOTGraphTraits<PAG*>
     }
 
     template<class EdgeIter>
-    static std::string getEdgeAttributes(NodeType*, EdgeIter EI, ICFG*)
+    static std::string getEdgeAttributes(NodeType*, EdgeIter EI, ICFG*)//重写了边的属性，给callcfgedge红色，给retcfgedge蓝色
     {
         ICFGEdge* edge = *(EI.getCurrent());
         assert(edge && "No edge found!!");
-        if (SVFUtil::isa<CallCFGEdge>(edge))
+        if (SVFUtil::isa<CallCFGEdge>(edge))//判断当前edge是否是call边？如何判断
             return "style=solid,color=red";
         else if (SVFUtil::isa<RetCFGEdge>(edge))
             return "style=solid,color=blue";

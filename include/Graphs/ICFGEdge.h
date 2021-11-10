@@ -43,7 +43,7 @@ class ICFGEdge : public GenericICFGEdgeTy
 {
 
 public:
-    /// ten types of ICFG edge
+    /// ten types of ICFG edge //ICFG中有10中类型的边
     /// three types of control-flow edges
     /// seven types of value-flow edges
     enum ICFGEdgeK

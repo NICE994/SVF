@@ -54,7 +54,7 @@ void ICFGBuilder::build(SVFModule* svfModule)
 }
 
 /*!
- * function entry
+ * function entry //函数的开头
  */
 void ICFGBuilder::processFunEntry(const SVFFunction*  fun, WorkList& worklist)
 {
@@ -68,7 +68,7 @@ void ICFGBuilder::processFunEntry(const SVFFunction*  fun, WorkList& worklist)
     for (InstVec::const_iterator nit = insts.begin(), enit = insts.end();
             nit != enit; ++nit)
     {
-        ICFGNode* instNode = getOrAddBlockICFGNode(*nit);           //add interprocedure edge
+        ICFGNode* instNode = getOrAddBlockICFGNode(*nit);           //add interprocedure edge //增加进程间的边
         icfg->addIntraEdge(FunEntryBlockNode, instNode);
         worklist.push(*nit);
     }
@@ -170,7 +170,7 @@ InterBlockNode* ICFGBuilder::getOrAddInterBlockICFGNode(const Instruction* inst)
 }
 
 /*!
- * Create edges between ICFG nodes across functions
+ * Create edges between ICFG nodes across functions //在function之间增加边
  */
 void ICFGBuilder::addICFGInterEdges(const Instruction* cs, const SVFFunction* callee)
 {
